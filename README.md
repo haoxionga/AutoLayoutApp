@@ -10,7 +10,7 @@
 
 ###效果图来一波，同样的代码，同一个dimens.xml文件
 
-		![screen](device-480-800-hdpi.png)
+		![](screen/device-480-800-hdpi.png)
 ####准备工作
 
 	1：在dimens中生成尺寸
