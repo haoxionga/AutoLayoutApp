@@ -11,16 +11,18 @@
 ###效果图来一波，同样的代码，同一个dimens.xml文件
 		
 		宽度480px，高度800px，屏幕为hdpi  模拟器
-		<img src='screen/device-480-800-hdpi.png' height='500px'/>
-
-		宽度1080px，高度1920px，屏幕为420dpi 模拟器
-		<img src='screen/device-1080-1920-420dpi.png' height='500px'/>
-
-		宽度1080px，高度1920px，屏幕为360dpi,华为
-		<img src='screen/huawei-1080-1920-360dpi.png' height='500px'/>
+		![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png)
 		
-		小米平板
-		<img src='screen/小米pad.jpg' height='500px'/>
+		
+
+		##宽度1080px，高度1920px，屏幕为420dpi 模拟器
+		![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-1080-1920-420dpi.png)
+
+		##宽度1080px，高度1920px，屏幕为360dpi,华为
+		![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/huawei-1080-1920-360dpi.jpg)
+		
+		##小米平板
+		![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/%E5%B0%8F%E7%B1%B3pad.jpg)
 
 ####准备工作
 
