@@ -25,7 +25,7 @@ public abstract class BaseAutoNativeFragment extends Fragment {
     }
 
     /**
-     * 返回fragment布局文件id
+     * @return 返回fragment对应的布局文件id
      **/
     protected abstract int getLayoutId();
 

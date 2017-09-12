@@ -26,7 +26,8 @@
 
 ####准备工作
 
-	1：在dimens中生成尺寸
+	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.0' ，（或者直接clone源码，导入library）
+	2：在dimens中生成尺寸
 		
 		x轴的尺寸以：x_ 开头
 			：x_10px,x_20px
@@ -38,7 +39,7 @@
 
 		项目中app,test包下dimenUtil可以批量生成
 
-	2：类介绍：
+	3：类介绍：
 
 
 			常用：

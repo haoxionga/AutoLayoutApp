@@ -29,9 +29,12 @@ public class AttributeUtil {
 
     /**
      * 根据VIew获取属性集合，
+     *
+     * @param view 需要去遍历获取属性的view
+     * @return 返回当前view的属性集合
      */
     public Map<String, String> getAttributeMaps(View view) {
-        Map<String, String> map =new HashMap<String, String>();
+        Map<String, String> map = new HashMap<String, String>();
         try {
             Field field1 = view.getClass().getField("mAttributes");
             if (field1.getType().isArray()) {

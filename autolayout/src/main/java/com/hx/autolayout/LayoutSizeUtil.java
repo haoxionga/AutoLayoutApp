@@ -37,6 +37,7 @@ public class LayoutSizeUtil {
             }
         }
         return singleton;
+
     }
 
     private Resources resources;

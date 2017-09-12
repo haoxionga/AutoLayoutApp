@@ -58,6 +58,8 @@ public class SizeUtil {
 
     /**
      * 设置针对一个界面的尺寸类型
+     *
+     * @param sizeUnit 尺寸bean
      **/
     public void setActivitySizeUnit(SizeUnitBean sizeUnit) {
         actSizeUnit = sizeUnit;
@@ -74,16 +76,19 @@ public class SizeUtil {
 
     /**
      * 设置计算尺寸的接口
+     *
+     * @param listener 计算尺寸的接口
      */
     public void setListener(ReckonSizeListener listener) {
         this.listener = listener;
     }
 
-    /***
+    /**
      * 获取x轴的比例
      *
-     *
-     * @param value*/
+     * @param value 原始值
+     * @return 通过屏幕比例计算得到的新值
+     */
     public double getScaleX(double value) {
         double newValue = 0.0;
         SizeUnitType widthUnit = getSizeUnit().getWidthUnit();
@@ -102,11 +107,12 @@ public class SizeUtil {
         return newValue;
     }
 
-    /***
+    /**
      * 获取y轴的比例
      *
-     *
-     * @param value*/
+     * @param value 原始值
+     * @return 通过比例计算得到的新值
+     */
     public double getScaleY(double value) {
         double newValue = 0.0;
         SizeUnitType heightUnit = getSizeUnit().getHeightUnit();
@@ -128,9 +134,10 @@ public class SizeUtil {
 
     /***
      * 获取字号的比例
+     * @param value 原始值
+     * @return 通过比例计算得到的新值
      *
-     *
-     * @param value*/
+     * */
     public double getScaleTextSize(double value) {
         double newValue = 0.0;
         SizeUnitType textSizeUnit = getSizeUnit().getTextSizeUnit();
@@ -158,7 +165,7 @@ public class SizeUtil {
      * @return
      */
     private double dip2px(float dipValue) {
-        return dipValue * density+0.5f;
+        return dipValue * density + 0.5f;
     }
 
     private SizeUnitBean getSizeUnit() {

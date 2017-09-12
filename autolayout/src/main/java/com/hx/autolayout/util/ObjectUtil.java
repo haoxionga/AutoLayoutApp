@@ -29,6 +29,10 @@ public class ObjectUtil {
 
     /**
      * 通过类名得到对象
+     *
+     * @param name1   view的simpleName
+     * @param context 上下文
+     * @return new出来的具体类
      */
     public Object getObject(String name1, Context context) {
         Object o = new Object();
