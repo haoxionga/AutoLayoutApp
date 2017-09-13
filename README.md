@@ -11,7 +11,7 @@
 
 ###特点
 	
-	1.根据dimens的属性名，给予不同的比例，比如设置正方形的view的时候，宽高都以x_开头，就会都以x轴的比例进行计算，如果想view的宽高保持同一比例，最好就以x_开头，这样计算宽高的时候就会以x轴的比例进行计算
+	1.根据dimens的属性名，给予不同的比例，比如设置正方形的view的时候，宽高都以x_开头，就会都以x轴的比例进行计算，如果想view的宽高保持同一比例，最好就以x_，y_,t_开头，这样计算宽高的时候就会以x轴的比例进行计算
 
 	2.设计灵活，对于不需要适配的属性，只要它的dimens命名不以x_开头或者在布局文件中直接写入具体值，就不会重新计算且设置尺寸
 
@@ -40,7 +40,7 @@
 
 ####准备工作
 
-	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.0' ，（或者直接clone源码，导入library）
+	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.1' ，（或者直接clone源码，导入library）
 	2：在dimens中生成尺寸
 		
 		x轴的尺寸以：x_ 开头
@@ -191,6 +191,12 @@ Fragment中的使用：
 针对单个View：
 		
 	暂时还没添加适配，不好处理，android6.0以上可以通过反射获取到单个View的attributeMap，6.0以下不行，所以暂时没有做适配
-		
+
+	但是可以通过这个方法获取对应的新值
+    LayoutSizeUtil.getInstance().getCurrentValue(id);
+
+github地址：
+[https://github.com/zhouqihao/AutoLayoutApp](https://github.com/zhouqihao/AutoLayoutApp)
+
 
 欢迎大家在issues多多提出问题，如果有不足的地方尽管提到issues，也可以进群联系我，吹吹水，QQ群：221061642

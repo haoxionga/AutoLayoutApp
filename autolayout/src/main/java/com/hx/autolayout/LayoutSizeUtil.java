@@ -274,6 +274,15 @@ public class LayoutSizeUtil {
         Log.d("LayoussizeUtil", "--------------:");
 
         int id = Integer.parseInt(strId.replace("@", "").trim());
+        return getCurrentValue(id);
+    }
+
+    /**
+     *
+     * @return 返回计算后适配屏幕的值
+     * @param id 资源id
+     * */
+    public double getCurrentValue(int id){
         String entryName = resources.getResourceEntryName(id);
         Log.d("LayoussizeUtil", "entryName:" + entryName);
 
@@ -298,6 +307,5 @@ public class LayoutSizeUtil {
 
         return newValue;
     }
-
 
 }

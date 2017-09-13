@@ -33,6 +33,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
     testCompile files('libs/jdom.jar')
-    compile 'com.hx.autolayout:autolayout:1.0.0'
+    compile 'com.hx.autolayout:autolayout:1.0.1'
 
 }

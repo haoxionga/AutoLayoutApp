@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import com.example.administrator.autolayoutapplication.R;
 import com.hx.autolayout.AutoLayout;
+import com.hx.autolayout.LayoutSizeUtil;
 import com.hx.autolayout.base.BaseAutoAppCompactActivity;
+import com.hx.autolayout.util.LayoutUtil;
+
 @AutoLayout
 public class MainActivity extends BaseAutoAppCompactActivity {
 
@@ -36,6 +39,7 @@ public class MainActivity extends BaseAutoAppCompactActivity {
         tvTitle = (TextView) findViewById(R.id.tv_title);
         Log.d("MainActivitys", "tvTitle.getLayoutParams().width:" + tvTitle.getLayoutParams().width);
         Log.d("MainActivitys", "tvTitle.getLayoutParams().width:" + tvTitle.getLayoutParams().height);
+
     }
 
     @Override
