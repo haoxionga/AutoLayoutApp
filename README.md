@@ -1,5 +1,7 @@
 ###感谢:张鸿洋大神的《Android AutoLayout全新的适配方式 堪称适配终结者》
+
 [http://blog.csdn.net/lmj623565791/article/details/49990941](http://blog.csdn.net/lmj623565791/article/details/49990941)
+
 ###实现原理：
 		设置基准宽高的px,dp值，获取当前设备的宽高的px，dp值，
 		例如 x轴的值，double newvalue =(当前宽度/基准宽度)*具体的值，如此就可以得到适合屏幕比例的值，与设计稿比例保持一致
