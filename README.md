@@ -33,8 +33,8 @@
 		
 <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png" width = "240" height = "400" style="margin-top:30px"  float="left"/>
  <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-1080-1920-420dpi.png" width = "240" height = "427" style="margin-top:30px"   float="left"/>
- <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/huawei-1080-1920-360dpi.jpg" width = "240" height = "427" style="margin-top:30px"  float="left" />
- <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/%E5%B0%8F%E7%B1%B3pad.jpg" width = "320" height = "427" style="margin-top:30px"  float="left" />
+ <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/huawei-1080-1920-360dpi.jpg" width = "240" height = "320" style="margin-top:30px"  float="left" />
+ <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/%E5%B0%8F%E7%B1%B3pad.jpg" width = "240" height = "320" style="margin-top:30px"  float="left" />
 		
 
 
