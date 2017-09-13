@@ -25,15 +25,18 @@
 ###效果图来一发
 		
 	
-		1宽度480px，高度800px，屏幕为hdpi  模拟器,宽度1080px，
-		2高度1920px，屏幕为420dpi 模拟器
- 		3宽度1080px，高度1920px，屏幕为360dpi,华为
-		4小米平板
-		
+ #宽度480px，高度800px，屏幕为hdpi  模拟器,宽度1080px，
 		
 <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png" width = "240" height = "400" style="margin-top:30px"  float="left"/>
+
+ #高度1920px，屏幕为420dpi 模拟器
+
  <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-1080-1920-420dpi.png" width = "240" height = "427" style="margin-top:30px"   float="left"/>
+
+ #宽度1080px，高度1920px，屏幕为360dpi,华为
+
  <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/huawei-1080-1920-360dpi.jpg" width = "240" height = "320" style="margin-top:30px"  float="left" />
+ #小米平板
  <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/%E5%B0%8F%E7%B1%B3pad.jpg" width = "240" height = "320" style="margin-top:30px"  float="left" />
 		
 
