@@ -2,6 +2,7 @@ package com.example.administrator.autolayoutapplication.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +25,17 @@ public class MainActivity extends BaseAutoAppCompactActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-//        tvTitle = (TextView) findViewById(R.id.tv_title);
 //        float textSize = tvTitle.getTextSize();
 
         getAndroiodScreenProperty();
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        Log.d("MainActivitys", "tvTitle.getLayoutParams().width:" + tvTitle.getLayoutParams().width);
+        Log.d("MainActivitys", "tvTitle.getLayoutParams().width:" + tvTitle.getLayoutParams().height);
     }
 
     @Override

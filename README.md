@@ -1,4 +1,5 @@
-
+###感谢:张鸿洋大神的《Android AutoLayout全新的适配方式 堪称适配终结者》
+[http://blog.csdn.net/lmj623565791/article/details/49990941](http://blog.csdn.net/lmj623565791/article/details/49990941)
 ###实现原理：
 		设置基准宽高的px,dp值，获取当前设备的宽高的px，dp值，
 		例如 x轴的值，double newvalue =(当前宽度/基准宽度)*具体的值，如此就可以得到适合屏幕比例的值，与设计稿比例保持一致
@@ -6,9 +7,20 @@
 		android6.0以上设备使用反射的方法，将View的mDebugViewAttributes字段置为true，它在初始化的时候就会去保存属性集合，以键值对的形式
 		android6.0以下，5.0设备获取到的属性集合不全，4.4及以下获取不到，所以采用传入布局文件id的形式，解析布局文件，生成对应的ViewBean，解析完布局文件后，遍历contentView，将对应的ViewBean的view地址指向遍历中对应view
 
+###特点
+	
+	1.根据dimens的属性名，给予不同的比例，比如设置正方形的view的时候，宽高都以x_开头，就会都以x轴的比例进行计算，如果想view的宽高保持同一比例，最好就以x_开头，这样计算宽高的时候就会以x轴的比例进行计算
 
+	2.设计灵活，对于不需要适配的属性，只要它的dimens命名不以x_开头或者在布局文件中直接写入具体值，就不会重新计算且设置尺寸
 
-###效果图来一波，同样的代码，同一个dimens.xml文件
+	3.如果原有计算比例规则不满足需求，可以自定义尺寸计算规则，在Application初始化的时候传入新的计算接口
+
+	4.支持dp和px单位
+
+	5.支持改变单个界面的尺寸单位，最大限度适配，在AutoLayout注解中填入参数，
+	
+	
+###效果图来一发
 		
 	##宽度480px，高度800px，屏幕为hdpi  模拟器
 ![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png)

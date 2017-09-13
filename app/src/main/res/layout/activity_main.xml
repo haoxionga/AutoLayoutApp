@@ -34,7 +34,6 @@
             android:layout_width="@dimen/x_540px"
             android:layout_height="@dimen/y_50px"
             android:background="#999"
-
             android:textSize="@dimen/t_30px"
             android:text="Hello World!" />
 
