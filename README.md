@@ -24,8 +24,10 @@
 	
 ###效果图来一发
 		
-	##宽度480px，高度800px，屏幕为hdpi  模拟器
-![](https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png)
+	
+
+ <img src="https://github.com/zhouqihao/AutoLayoutApp/blob/master/screen/device-480-800-hdpi.png" width = "200" height = "300" style="margin-top:30px" alt="宽度480px，高度800px，屏幕为hdpi  模拟器" align=center />
+
 		
 		
 
