@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.hx.autolayout.bean.SizeUnitBean;
 import com.hx.autolayout.constant.DimenNameStart;
-import com.hx.autolayout.constant.SizeUnitType;
 import com.hx.autolayout.util.LayoutUtil;
 import com.hx.autolayout.util.SizeUtil;
 
@@ -44,13 +43,13 @@ public class LayoutSizeUtil {
 
 
     /**
-     * @param sizeUnitBean      尺寸单位bean，为空的情况，默认定义单位为dp
-     * @param baseWith          基准宽度，px尺寸
-     * @param baseContentHeight 基准内容高度px尺寸，内容宽度 不包括状态栏！！！！
-     * @param baseWidthDp       基准宽度dp ,dp尺寸
-     * @param baseContentHeightDp      基准内容高度dp，dp尺寸
-     * @param application       上下文
-     * @param listener          计算尺寸的接口
+     * @param sizeUnitBean        尺寸单位bean，为空的情况，默认定义单位为dp
+     * @param baseWith            基准宽度，px尺寸
+     * @param baseContentHeight   基准内容高度px尺寸，内容宽度 不包括状态栏！！！！
+     * @param baseWidthDp         基准宽度dp ,dp尺寸
+     * @param baseContentHeightDp 基准内容高度dp，dp尺寸
+     * @param application         上下文
+     * @param listener            计算尺寸的接口
      */
     public void initConfig(double baseWith, double baseContentHeight, double baseWidthDp, double baseContentHeightDp, Application application, SizeUnitBean sizeUnitBean, ReckonSizeListener listener) {
         SizeUnitBean appSizeUnit;
@@ -65,12 +64,12 @@ public class LayoutSizeUtil {
     }
 
     /**
-     * @param sizeUnitBean      尺寸单位bean，为空的情况，默认定义单位为dp
-     * @param baseWith          基准宽度，px尺寸
-     * @param baseContentHeight 基准内容高度px尺寸，内容宽度 不包括状态栏！！！！
-     * @param baseWidthDp       基准宽度dp ,dp尺寸
-     * @param baseContentHeightDp      基准内容高度dp，dp尺寸
-     * @param application       上下文
+     * @param sizeUnitBean        尺寸单位bean，为空的情况，默认定义单位为dp
+     * @param baseWith            基准宽度，px尺寸
+     * @param baseContentHeight   基准内容高度px尺寸，内容宽度 不包括状态栏！！！！
+     * @param baseWidthDp         基准宽度dp ,dp尺寸
+     * @param baseContentHeightDp 基准内容高度dp，dp尺寸
+     * @param application         上下文
      */
     public void initConfig(double baseWith, double baseContentHeight, double baseWidthDp, double baseContentHeightDp, SizeUnitBean sizeUnitBean, Application application) {
         SizeUnitBean appSizeUnit;
@@ -103,7 +102,7 @@ public class LayoutSizeUtil {
         currentHeight -= statusBarHeight;
         screenContentHeightDp -= (statusBarHeight / density);
 
-        SizeUtil.getInstance().init(baseWith, baseContentHeight,baseWithDp,baseContentHeightDp, currentWidth, currentHeight, screenWidthDp, screenContentHeightDp, density);
+        SizeUtil.getInstance().init(baseWith, baseContentHeight, baseWithDp, baseContentHeightDp, currentWidth, currentHeight, screenWidthDp, screenContentHeightDp, density);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             LayoutUtil.getInstance().init(application);
         } else {
@@ -126,9 +125,9 @@ public class LayoutSizeUtil {
      * @param map  要适配的View的属性集合
      */
     public void setViewSize(View view, Map<String, String> map) {
-
-
-
+        if (resources == null) {
+            throw new ExceptionInInitializerError("LayoutSizeUitil尚未初始化,请在您项目Application的onCreate处调用");
+        }
 
 
         Log.d("LayoutSizeUtilsss", map.toString());
@@ -139,7 +138,7 @@ public class LayoutSizeUtil {
             if (map.get(width).startsWith("@")) {
                 double value = getCurrentValue(map.get(width));
                 Log.d("LayoutSizeUtilsss", "value:" + value);
-                view.getLayoutParams().width = (int) value ;
+                view.getLayoutParams().width = (int) value;
             }
         }
         //获取当前的高度值
@@ -162,12 +161,18 @@ public class LayoutSizeUtil {
                     ((TextView) view).setTextSize(value);
                 }
             }
+            String drawablePadding = "drawablePadding";
+            if (map.containsKey(drawablePadding)) {
+                if (map.get(drawablePadding).startsWith("@")) {
+                    int value = (int) getCurrentValue(map.get(drawablePadding));
+                    ((TextView) view).setCompoundDrawablePadding(value);
+                }
+            }
+
+
         }
 
 
-        if (resources == null) {
-            throw new ExceptionInInitializerError("LayoutSizeUitil尚未初始化,请在您项目Application的onCreate处调用");
-        }
         //内边距，
         int paddingLeft = 0, paddingRight = 0,
                 paddingTop = 0, paddingBottom = 0;
@@ -278,11 +283,10 @@ public class LayoutSizeUtil {
     }
 
     /**
-     *
-     * @return 返回计算后适配屏幕的值
      * @param id 资源id
-     * */
-    public double getCurrentValue(int id){
+     * @return 返回计算后适配屏幕的值
+     */
+    public double getCurrentValue(int id) {
         String entryName = resources.getResourceEntryName(id);
         Log.d("LayoussizeUtil", "entryName:" + entryName);
 

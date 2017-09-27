@@ -45,7 +45,7 @@
 
 ####准备工作
 
-	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.1' ，（或者直接clone源码，导入library）
+	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.4' ，（或者直接clone源码，导入library）
 	2：在dimens中生成尺寸
 		
 		x轴的尺寸以：x_ 开头

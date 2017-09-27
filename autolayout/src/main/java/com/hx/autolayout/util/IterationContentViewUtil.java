@@ -46,7 +46,7 @@ public class IterationContentViewUtil {
         if (LayoutSizeUtil.getInstance().getResources() == null) {
             throw new ExceptionInInitializerError("LayoutSizeUtil尚未初始化,请在您项目Application的onCreate处调用");
         }
-        AutoLayout annotation;
+        AutoLayout annotation = null;
         try {
             //先获取类上的注解
             annotation = fragment.getClass().getAnnotation(AutoLayout.class);
@@ -55,11 +55,12 @@ public class IterationContentViewUtil {
                 Method method = fragment.getClass().getMethod("onCreateView", LayoutInflater.class, ViewGroup.class, Bundle.class);
                 annotation = method.getAnnotation(AutoLayout.class);
             }
-            initSize(fragment.getContext(), layoutId, contentView, annotation);
-            Log.d("IterationsentViewUti", "有数据");
-
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
+        } finally {
+            if (annotation == null || annotation.isAutoLayout()) {
+                initSize(fragment.getContext(), layoutId, contentView, annotation);
+            }
         }
 
     }
@@ -72,7 +73,7 @@ public class IterationContentViewUtil {
         if (LayoutSizeUtil.getInstance().getResources() == null) {
             throw new ExceptionInInitializerError("LayoutSizeUtil尚未初始化,请在您项目Application的onCreate处调用");
         }
-        AutoLayout annotation;
+        AutoLayout annotation = null;
         try {
             //先获取类上的注解
             annotation = activity.getClass().getAnnotation(AutoLayout.class);
@@ -81,9 +82,12 @@ public class IterationContentViewUtil {
                 Method method = activity.getClass().getDeclaredMethod("onCreate", Bundle.class);
                 annotation = method.getAnnotation(AutoLayout.class);
             }
-            initSize(activity, layoutResID, contentView, annotation);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
+        } finally {
+            if (annotation == null || annotation.isAutoLayout()) {
+                initSize(activity, layoutResID, contentView, annotation);
+            }
         }
     }
 
@@ -95,7 +99,7 @@ public class IterationContentViewUtil {
         if (LayoutSizeUtil.getInstance().getResources() == null) {
             throw new ExceptionInInitializerError("LayoutSizeUtil尚未初始化,请在您项目Application的onCreate处调用");
         }
-        AutoLayout annotation;
+        AutoLayout annotation = null;
         try {
             //先获取类上的注解
             annotation = fragment.getClass().getAnnotation(AutoLayout.class);
@@ -107,27 +111,31 @@ public class IterationContentViewUtil {
             initSize(fragment.getActivity(), layoutId, contentView, annotation);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
+        } finally {
+            if (annotation == null || annotation.isAutoLayout()) {
+                initSize(fragment.getActivity(), layoutId, contentView, annotation);
+            }
         }
 
     }
 
     private void initSize(Context context, int layoutResID, ViewGroup contentView, AutoLayout annotation) {
+        SizeUnitBean sizeUnit = null;
+        boolean changeSizeTYpe = false;
         if (annotation != null) {
             boolean autoLayout = annotation.isAutoLayout();
-            boolean changeSizeTYpe = annotation.isChangeSizeType();
-            SizeUnitBean sizeUnit = null;
+            changeSizeTYpe = annotation.isChangeSizeType();
+
             if (changeSizeTYpe) {
                 SizeUnitType heightUnit = annotation.heightUnit();
                 SizeUnitType widthUnit = annotation.widthUnit();
                 SizeUnitType textSizeUnit = annotation.textSizeUnit();
                 sizeUnit = new SizeUnitBean(widthUnit, heightUnit, textSizeUnit);
+            }
 
-            }
-            //自适应
-            if (autoLayout) {
-                initSizeView(context, layoutResID, contentView, changeSizeTYpe, sizeUnit);
-            }
         }
+
+        initSizeView(context, layoutResID, contentView, changeSizeTYpe, sizeUnit);
     }
 
 
@@ -139,7 +147,7 @@ public class IterationContentViewUtil {
      * @param contentView      需要适配的布局view
      */
     public void initSizeView(Context context, int layoutResID, ViewGroup contentView, boolean isChangeSizeType, SizeUnitBean sizeUnit) {
-        if (isChangeSizeType) {
+        if (isChangeSizeType && sizeUnit != null) {
             SizeUtil.getInstance().setActivitySizeUnit(sizeUnit);
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -165,6 +173,19 @@ public class IterationContentViewUtil {
         initSizeView(context, layoutResID, contentView, false, null);
     }
 
+    /**
+     * 该方法默认不改变尺寸单位
+     *
+     * @param context     上下文对象
+     * @param layoutResID 内容View的布局id
+     * @param contentView 需要适配的布局View
+     */
+    public void initSizeView(Context context, int layoutResID, View contentView) {
+        if (contentView instanceof ViewGroup) {
+            initSizeView(context, layoutResID, (ViewGroup) contentView, false, null);
+
+        }
+    }
 
     /***
      *大于++6.0的情况，直接遍历设置contentView
