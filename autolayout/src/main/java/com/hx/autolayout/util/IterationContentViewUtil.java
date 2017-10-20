@@ -18,6 +18,7 @@ import com.hx.autolayout.bean.SizeUnitBean;
 import com.hx.autolayout.bean.ViewBean;
 
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Map;
 
 /***
@@ -241,19 +242,21 @@ public class IterationContentViewUtil {
      */
     private void relevancyViewBeanWidthContentView(ViewBean rootViewBean, ViewGroup contentView) {
         rootViewBean.setView(contentView);
-        int childCount = contentView.getChildCount();
-        if (childCount > 0) {
-            for (int i = 0; i < childCount; i++) {
-                ViewBean bean = rootViewBean.getChildList().get(i);
-                View view = contentView.getChildAt(i);
-                if (view instanceof ViewGroup) {
-                    relevancyViewBeanWidthContentView(bean, (ViewGroup) view);
-                } else {
-                    bean.setView(view);
+        List<ViewBean> childList = rootViewBean.getChildList();
+        //存在子view的情况
+        if (childList != null) {
+            if (childList.size() > 0 && contentView instanceof ViewGroup && contentView.getChildCount() >= childList.size()) {
+                for (int i = 0; i < childList.size(); i++) {
+                    ViewBean viewBean = childList.get(i);
+                    View childView = contentView.getChildAt(i);
+                    if ((childView instanceof ViewGroup)&&viewBean.getChildList()!=null&&viewBean.getChildList().size()>0) {
+                        relevancyViewBeanWidthContentView(viewBean, (ViewGroup) childView);
+                    } else {
+                        viewBean.setView(childView);
+                    }
                 }
             }
         }
-
     }
 
 
