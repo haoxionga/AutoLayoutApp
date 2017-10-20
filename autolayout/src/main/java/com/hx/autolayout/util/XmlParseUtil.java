@@ -2,6 +2,7 @@ package com.hx.autolayout.util;
 
 import android.content.Context;
 import android.content.res.XmlResourceParser;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.hx.autolayout.bean.ViewBean;
@@ -10,8 +11,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 /**
  * xml解析类
@@ -33,9 +37,11 @@ public class XmlParseUtil {
 
 
     private String TAG = "XmlParseUtil";
+    private List<ViewBean> lastViewList;
 
     public ViewBean convertXmlToBean(int layoutResID, Context context) {
-        ViewBean rootViewBean = null, lastViewGroup = null;
+        lastViewList = new ArrayList<ViewBean>();
+        ViewBean rootViewBean = null;
         String nearStartName = "";
         XmlResourceParser xmlParser = context.getResources().getLayout(layoutResID);
         try {
@@ -61,12 +67,7 @@ public class XmlParseUtil {
                             Integer layoutId = LayoutUtil.getInstance().getLayoutIdByName(layout);
                             if (layoutId != -1) {
                                 ViewBean viewBean = convertXmlToBean(layoutId, context);
-                                //上一个viewgroup是否为空
-                                if (lastViewGroup == null) {
-                                    rootViewBean.setChildView(viewBean);
-                                } else {
-                                    lastViewGroup.setChildView(viewBean);
-                                }
+                                lastViewList.get(lastViewList.size() - 1).setChildView(viewBean);
                             }
                         } else {
                             //非include引入标签
@@ -76,23 +77,24 @@ public class XmlParseUtil {
                                 rootViewBean = getViewBean();
                                 rootViewBean.setName(name);
                                 rootViewBean.setAttributeMap(attributeMap);
+                                lastViewList.add(rootViewBean);
                             } else {
                                 //创建子标签
                                 ViewBean bean = new ViewBean();
                                 bean.setName(name);
                                 bean.setAttributeMap(attributeMap);
-                                //上一个viewGroup是否为空
-                                if (lastViewGroup == null) {
-                                    rootViewBean.setChildView(bean);
-                                } else {
-                                    lastViewGroup.setChildView(bean);
+
+
+                                //将当前viewbean设置为上一个子bean
+                                if (lastViewList.size() > 0) {
+                                    lastViewList.get(lastViewList.size() - 1).setChildView(bean);
                                 }
+
                                 //通过名字判断是否是ViewGroup
                                 if (ObjectUtil.getInstance().getObject(name, context) instanceof ViewGroup) {
                                     //是viewgroup的情况
-                                    lastViewGroup = bean;
+                                    lastViewList.add(bean);
                                 }
-
                             }
                         }
                         break;
@@ -100,9 +102,11 @@ public class XmlParseUtil {
                         break;
                     case XmlPullParser.END_TAG:
                         String name1 = xmlParser.getName();
-                        //非当前的标签，那就是上一个viewgroup的开始标签
-                        if (!nearStartName.equals(name1)) {
-                            lastViewGroup = null;
+                        //通过名字判断是否是ViewGroup
+                        if (ObjectUtil.getInstance().getObject(name1, context) instanceof ViewGroup) {
+                            if (lastViewList.size() > 1) {
+                                lastViewList.remove(lastViewList.size() - 1);
+                            }
                         }
                         break;
                     default:
