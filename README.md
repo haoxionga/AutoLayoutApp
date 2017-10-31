@@ -45,7 +45,7 @@
 
 ####准备工作
 
-	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.4' ，（或者直接clone源码，导入library）
+	1：在gradle中添加依赖：compile 'com.hx.autolayout:autolayout:1.0.7' ，（或者直接clone源码，导入library）
 	2：在dimens中生成尺寸
 		
 		x轴的尺寸以：x_ 开头
@@ -60,13 +60,15 @@
 
 	3：类介绍：
 
-
-			常用：
-
-				AutoLayout 适配的注解，具体请看注解
-				LayoutSizeUtil:初始化的类，以及设置view的尺寸的方法
-				IterationContentViewUtil：遍历工具类，遍历viewgroup，调用LaoutSizeUtil设置尺寸的方法
-				ReckonSizeListener :自定义的计算尺寸的接口，需在application中初始化传入
+	    常用：
+        LayoutSizeUtil:初始化的类，以及设置view的尺寸的方法
+	    IterationContentViewUtil：遍历工具类，遍历viewgroup，调用LaoutSizeUtil设置尺寸的方法
+	    ReckonSizeListener :自定义的计算尺寸的接口，需在application中初始化传入
+	    AutoLayout 注解，在onCreate或者类上使用，不用也可以，默认适配屏幕
+	         参数：
+	            isAutoLayout：是否适配，false的情况当前页面不会重新设置尺寸
+	            isChangeSizeType：是否改变当前页面默认尺寸，true的情况使用Application中定义的宽度，高度，字体尺寸，false的情况需要传入widthUnit，height...
+	            widthUnit：宽度尺寸，px还是dp，还是sp
 ###使用
 
 
@@ -103,17 +105,11 @@
 
 		**注意:basecontentheight,basecontentheigithdp均指activity也就是content的高度，不包括状态栏高度**
 
-*****
-
-注解AutoLayout:
-	
-	参数:isAutoLayout是否自动适配，默认为true
 		
 ****
 Activity中的使用：
 
 
-		一：继承方式
 			
 				1：继承base包下的BaseAuto**Activity
 
@@ -126,28 +122,11 @@ Activity中的使用：
 					
 
 
-		二:实现方式：
-
-				1：类上添加注解
-						@AutoLayout
-						public class MainActivity extends BaseAutoAppCompactActivity {
-						******
-						}
-						
-				2：onCreate方法上添加注解
-						
-					    @AutoLayout
-					    @Override
-					    protected void onCreate(Bundle savedInstanceState) {
-					        super.onCreate(savedInstanceState);
-					        setContentView(R.layout.activity_main);
-					    }
-
 
 Fragment中的使用：
 
 
-		一：继承方式
+
 			
 				1：继承base包下的BaseAutoV4Fragment或BaseAutoNativeFragment
 
@@ -160,22 +139,6 @@ Fragment中的使用：
 					
 
 
-		二:实现方式：
-
-				1：类上添加注解
-						@AutoLayout
-						public class MyFragment extends **** {
-						******
-						}
-						
-				2：onCreate方法上添加注解
-						
-					    @AutoLayout
-					    @Nullable
-					    @Override
-					    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-					    ****
-					    }
 
 
 ******

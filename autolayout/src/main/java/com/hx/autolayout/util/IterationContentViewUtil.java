@@ -158,9 +158,11 @@ public class IterationContentViewUtil {
             //大于android6.0的情况
             forEachViewAboveSDKM(contentView);
         }
+        //使用完当前接界面的尺寸将其重置
         if (isChangeSizeType) {
             SizeUtil.getInstance().resetActivitySizeUnit();
         }
+
     }
 
     /**
@@ -249,7 +251,7 @@ public class IterationContentViewUtil {
                 for (int i = 0; i < childList.size(); i++) {
                     ViewBean viewBean = childList.get(i);
                     View childView = contentView.getChildAt(i);
-                    if ((childView instanceof ViewGroup)&&viewBean.getChildList()!=null&&viewBean.getChildList().size()>0) {
+                    if ((childView instanceof ViewGroup) && viewBean.getChildList() != null && viewBean.getChildList().size() > 0) {
                         relevancyViewBeanWidthContentView(viewBean, (ViewGroup) childView);
                     } else {
                         viewBean.setView(childView);

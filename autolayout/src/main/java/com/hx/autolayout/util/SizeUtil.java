@@ -1,5 +1,7 @@
 package com.hx.autolayout.util;
 
+import android.util.Log;
+
 import com.hx.autolayout.ReckonSizeListener;
 import com.hx.autolayout.bean.SizeUnitBean;
 import com.hx.autolayout.constant.SizeUnitType;
@@ -168,10 +170,12 @@ public class SizeUtil {
         return dipValue * density + 0.5f;
     }
 
-    private SizeUnitBean getSizeUnit() {
+    public SizeUnitBean getSizeUnit() {
         if (actSizeUnit != null) {
+
             return actSizeUnit;
         }
+
         return appSizeUnit;
     }
 

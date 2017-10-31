@@ -14,15 +14,15 @@ import com.example.administrator.autolayoutapplication.R;
 import com.hx.autolayout.AutoLayout;
 import com.hx.autolayout.LayoutSizeUtil;
 import com.hx.autolayout.base.BaseAutoAppCompactActivity;
+import com.hx.autolayout.constant.SizeUnitType;
 import com.hx.autolayout.util.LayoutUtil;
 
-@AutoLayout
 public class MainActivity extends BaseAutoAppCompactActivity {
 
 
     private TextView tvTitle;
 
-    @AutoLayout
+    @AutoLayout(isAutoLayout = true,isChangeSizeType = true,widthUnit = SizeUnitType.PX,heightUnit = SizeUnitType.PX,textSizeUnit = SizeUnitType.PX)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
