@@ -151,12 +151,11 @@ public class IterationContentViewUtil {
         if (isChangeSizeType && sizeUnit != null) {
             SizeUtil.getInstance().setActivitySizeUnit(sizeUnit);
         }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            //小于android6.0的情况
-            forEachViewBelowSDKM(contentView, layoutResID, context);
-        } else {
-            //大于android6.0的情况
+         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M&&Build.VERSION.SDK_INT<=Build.VERSION_CODES.O){
+            //android6.0和7.0使用该方法
             forEachViewAboveSDKM(contentView);
+        }else {
+            forEachViewBelowSDKM(contentView, layoutResID, context);
         }
         //使用完当前接界面的尺寸将其重置
         if (isChangeSizeType) {
